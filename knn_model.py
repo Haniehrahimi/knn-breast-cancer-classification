@@ -1,10 +1,11 @@
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split,cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+
 
 #Load Dataset
 data = load_breast_cancer()
@@ -41,3 +42,11 @@ print("Confusion matrix: ",confusion_matrix(y_test,y_pred))
 
 print("Classification Report: ")
 print(classification_report(y_test,y_pred))
+
+#Cross Validation
+cv_scores = cross_val_score(knn_pipeline,X_train,y_train,cv=5,scoring="accuracy")
+
+print("CV Scores: ",cv_scores)
+print("Mean CV Accuracy: ",cv_scores.mean())
+print("Std CV Accuracy: ",cv_scores.std())
+
