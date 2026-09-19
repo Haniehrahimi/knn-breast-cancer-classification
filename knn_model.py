@@ -20,6 +20,33 @@ X.info()
 print(y.value_counts())
 print(X.isnull().sum())
 
+plt.figure(figsize=(6, 4))
+
+y.value_counts().plot(kind="bar")
+
+plt.title("Target Class Distribution")
+plt.xlabel("Class")
+plt.ylabel("Count")
+
+plt.xticks(
+    ticks=[0, 1],
+    labels=["Malignant", "Benign"],
+    rotation=0
+)
+
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(7, 4))
+
+plt.hist(X["mean radius"], bins=20)
+
+plt.title("Distribution of Mean Radius")
+plt.xlabel("Mean Radius")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
 
 #Train / Test Split
 X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42,stratify=y)
